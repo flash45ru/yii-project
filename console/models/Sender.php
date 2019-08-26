@@ -20,8 +20,8 @@ class Sender
             $result = Yii::$app->mailer->compose('/mailer/newslist', [
                 'newsList' => $newsList,
             ])
-                ->setFrom('Сервер для рассылки')
-                ->setTo($subscribers['email'])
+                ->setFrom(Yii::$app->params['sandServer'])
+                ->setTo($subscriber['email'])
                 ->setSubject('Тема сообщения')
                 ->send();
         }
