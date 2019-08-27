@@ -21,6 +21,13 @@ class News
         return self::prepareList($result);
     }
 
+    public static function getLimitList($limit)
+    {
+        $sql = 'SELECT * FROM news WHERE status ='.self::STATUS_NOT_SEND .' LIMIT '.$limit;
+        $result = Yii::$app->db->createCommand($sql)->queryAll();
+        return self::prepareList($result);
+    }
+
     /**
      * @param $result array
      * @return mixed
