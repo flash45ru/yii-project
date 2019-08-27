@@ -2,10 +2,12 @@
 
 /* @var $this yii\web\View */
 
+use frontend\widgets\newsList\NewsList;
+
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
-
+<div><?php echo NewsList::widget(['showLimit' => 1]); ?></div>
     <div class="jumbotron">
         <h1>Congratulations!</h1>
 
