@@ -21,6 +21,15 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    const USER_REGISTERED = 'user_registered';
+
+    public function init()
+    {
+        $this->on(self::USER_REGISTERED, [Yii::$app->emailService, 'notifyAdmins']);
+        $this->on(self::USER_REGISTERED, [Yii::$app->emailService, 'notifyUser']);
+        parent::init();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -119,5 +128,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
         return $this->getAuthKey() === $authKey;
+    }
+
+    /**
+     * @return string|void
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }
