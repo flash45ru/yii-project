@@ -23,7 +23,7 @@ class SearchForm extends Model
     {
         if ($this->validate()) {
             $model = new NewsSearch();
-            return $model->simpleSearch($this->keyword);
+            return $model->fullTextSearch($this->keyword);
         }
 
     }
